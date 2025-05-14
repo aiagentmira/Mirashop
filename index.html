@@ -4,93 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mira Shop</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <style>
-    .sticky-header {
+    header {
       position: sticky;
       top: 0;
-      z-index: 50;
       background-color: white;
-      transition: all 0.4s ease-in-out;
-    }
-
-    .logo-wrapper {
-      position: relative;
-      display: inline-block;
+      z-index: 50;
+      transition: all 0.3s ease;
     }
 
     .logo {
-      transition: all 0.4s ease-in-out;
-      transform-origin: top;
-      height: 128px; /* h-32 * 1.15 = 128px */
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
     }
 
-    .description {
-      transition: all 0.4s ease-in-out;
-      margin-top: 0.5rem;
+    .header-text {
+      transition: all 0.3s ease;
     }
 
-    .scrolled {
-      border-bottom: 1px solid #e5e7eb;
+    .shrink .logo {
+      transform: scale(0.75);
     }
 
-    .scrolled .logo {
-      transform: scale(0.75); /* 25% reduction */
-    }
-
-    .scrolled .description {
-      margin-top: 0rem;
-      font-size: 0.8125rem;
+    .shrink .header-text {
+      font-size: 0.875rem;
+      margin-top: 0.25rem; /* Avvicina testo al logo */
       line-height: 1rem;
-      transform: translateY(-8px); /* ≈ 2mm */
     }
 
-    /* Effetto ombra 3D */
-    .logo-wrapper::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 10px;
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, transparent 80%);
-      z-index: -1;
-      transition: all 0.4s ease-in-out;
-    }
-
-    .scrolled .logo-wrapper::after {
-      opacity: 0.5;
+    .divider {
+      border-bottom: 1px solid #e5e7eb;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 <body class="bg-white text-gray-900">
-  <header class="sticky-header flex flex-col items-center py-4" id="pageHeader">
-    <div class="logo-wrapper">
-      <img src="./images/logo.png" alt="Mira Logo" class="logo object-contain" id="logo"/>
-    </div>
-    <p class="description text-lg mt-2 text-center" id="headerText">
-      Shop our Amazon favorites – trusted, trending, and ready to ship.
-    </p>
+  <header id="pageHeader" class="w-full flex flex-col items-center pt-4 pb-2">
+    <img src="./images/logo.png" alt="Mira Logo" class="logo h-24 md:h-32 object-contain" />
+    <p class="header-text text-lg mt-2 text-center max-w-xs">Shop our Amazon favorites – trusted, trending, and ready to ship.</p>
+    <div class="divider w-full max-w-md"></div>
   </header>
 
   <main class="p-4 space-y-10">
-    <section id="firetv" class="flex flex-col items-center space-y-4">
+    <section id="firestick" class="flex flex-col items-center space-y-4">
       <img src="./images/firetv.jpg" alt="Fire TV Stick" class="h-52 object-contain" />
       <p class="text-center">Fire TV Stick 4K with Alexa Voice Remote – endless streaming at your fingertips.</p>
-      <a href="#" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
+      <a href="https://geni.us/sMTL00g" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
     </section>
 
     <section id="airfryer" class="flex flex-col items-center space-y-4">
-      <img src="./images/airfryer.jpg" alt="Airfryer" class="h-52 object-contain" />
-      <p class="text-center">Ninja Airfryer – Crispy food with up to 75% less fat. Fast. Easy. Tasty.</p>
-      <a href="#" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
+      <img src="./images/airfryer.jpg" alt="Corsori Airfryer" class="h-52 object-contain" />
+      <p class="text-center">Corsori Airfryer – Healthier, faster, and tastier cooking made simple.</p>
+      <a href="https://geni.us/ID7Cm" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
     </section>
 
     <section id="stanley" class="flex flex-col items-center space-y-4">
       <img src="./images/stanley.jpg" alt="Stanley Tumbler" class="h-52 object-contain" />
       <p class="text-center">Stanley Quencher H2.0 Tumbler – Hydration meets style and performance.</p>
-      <a href="#" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
+      <a href="https://geni.us/3zRg55" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
     </section>
   </main>
 
@@ -104,12 +76,15 @@
 
   <script>
     const header = document.getElementById('pageHeader');
+    let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 10) {
-        header.classList.add('scrolled');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 10) {
+        header.classList.add('shrink');
       } else {
-        header.classList.remove('scrolled');
+        header.classList.remove('shrink');
       }
+      lastScrollTop = scrollTop;
     });
   </script>
 </body>
