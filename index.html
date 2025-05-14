@@ -16,7 +16,8 @@
 
     .logo {
       transition: all 0.3s ease;
-      filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+      transform-origin: top center;
     }
 
     .header-text {
@@ -29,7 +30,7 @@
 
     .shrink .header-text {
       font-size: 0.875rem;
-      margin-top: 0.25rem; /* Avvicina testo al logo */
+      margin-top: 0.25rem;
       line-height: 1rem;
     }
 
@@ -41,7 +42,7 @@
 </head>
 <body class="bg-white text-gray-900">
   <header id="pageHeader" class="w-full flex flex-col items-center pt-4 pb-2">
-    <img src="./images/logo.png" alt="Mira Logo" class="logo h-24 md:h-32 object-contain" />
+    <img src="./images/logo.png" alt="Mira Logo" class="logo h-[138px] object-contain" />
     <p class="header-text text-lg mt-2 text-center max-w-xs">Shop our Amazon favorites – trusted, trending, and ready to ship.</p>
     <div class="divider w-full max-w-md"></div>
   </header>
@@ -54,8 +55,8 @@
     </section>
 
     <section id="airfryer" class="flex flex-col items-center space-y-4">
-      <img src="./images/airfryer.jpg" alt="Corsori Airfryer" class="h-52 object-contain" />
-      <p class="text-center">Corsori Airfryer – Healthier, faster, and tastier cooking made simple.</p>
+      <img src="./images/cosori.jpg" alt="Cosori Airfryer" class="h-52 object-contain" />
+      <p class="text-center">Cosori Airfryer – Healthier, faster, and tastier cooking made simple.</p>
       <a href="https://geni.us/ID7Cm" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
     </section>
 
@@ -76,15 +77,12 @@
 
   <script>
     const header = document.getElementById('pageHeader');
-    let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > 10) {
+      if (window.scrollY > 10) {
         header.classList.add('shrink');
       } else {
         header.classList.remove('shrink');
       }
-      lastScrollTop = scrollTop;
     });
   </script>
 </body>
