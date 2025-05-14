@@ -14,13 +14,20 @@
       transition: all 0.4s ease-in-out;
     }
 
+    .logo-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
     .logo {
       transition: all 0.4s ease-in-out;
       transform-origin: top;
+      height: 128px; /* h-32 * 1.15 = 128px */
     }
 
     .description {
       transition: all 0.4s ease-in-out;
+      margin-top: 0.5rem;
     }
 
     .scrolled {
@@ -28,20 +35,40 @@
     }
 
     .scrolled .logo {
-      transform: scale(0.8);
-      filter: drop-shadow(0 -3px 6px rgba(0, 0, 0, 0.15)); /* ombra 3D soft verso il basso */
+      transform: scale(0.75); /* 25% reduction */
     }
 
     .scrolled .description {
       margin-top: 0rem;
       font-size: 0.8125rem;
       line-height: 1rem;
+      transform: translateY(-8px); /* ≈ 2mm */
+    }
+
+    /* Effetto ombra 3D */
+    .logo-wrapper::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 10px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, transparent 80%);
+      z-index: -1;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .scrolled .logo-wrapper::after {
+      opacity: 0.5;
     }
   </style>
 </head>
 <body class="bg-white text-gray-900">
   <header class="sticky-header flex flex-col items-center py-4" id="pageHeader">
-    <img src="./images/logo.png" alt="Mira Logo" class="logo h-20 md:h-28 object-contain" id="logo"/>
+    <div class="logo-wrapper">
+      <img src="./images/logo.png" alt="Mira Logo" class="logo object-contain" id="logo"/>
+    </div>
     <p class="description text-lg mt-2 text-center" id="headerText">
       Shop our Amazon favorites – trusted, trending, and ready to ship.
     </p>
