@@ -19,27 +19,27 @@
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
       transform-origin: top center;
       height: 138px;
+      margin-bottom: 0.5rem;
     }
 
     .header-text {
       transition: all 0.3s ease;
-      margin-top: 0.75rem;
     }
 
     .shrink .logo {
       transform: scale(0.75);
-      margin-bottom: -12px; /* riduce spazio visivo tra logo e testo */
+      margin-bottom: 0.25rem; /* Riduce lo spazio sotto al logo */
     }
 
     .shrink .header-text {
       font-size: 0.875rem;
       line-height: 1rem;
-      margin-top: 0rem;
+      margin-top: 0rem; /* Elimina spazio sopra la scritta */
     }
 
     @media (max-width: 640px) {
       .shrink .header-text {
-        transform: translateY(-6px);
+        transform: translateY(-10px);
       }
     }
 
@@ -52,7 +52,7 @@
 <body class="bg-white text-gray-900">
   <header id="pageHeader" class="w-full flex flex-col items-center pt-4 pb-2">
     <img src="./images/logo.png" alt="Mira Logo" class="logo object-contain" />
-    <p class="header-text text-lg mt-2 text-center max-w-xs">Shop our Amazon favorites – trusted, trending, and ready to ship.</p>
+    <p class="header-text text-lg text-center max-w-xs">Shop our Amazon favorites – trusted, trending, and ready to ship.</p>
     <div class="divider w-full max-w-md"></div>
   </header>
 
