@@ -12,49 +12,51 @@
       background-color: white;
       z-index: 50;
       transition: all 0.3s ease;
+      padding-top: 1rem;
     }
 
     .logo {
       transition: all 0.3s ease;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
-      transform-origin: top center;
-      height: 138px;
-      margin-bottom: 1rem;
+      max-height: 120px;
+      object-fit: contain;
+      object-position: center;
+      margin-bottom: 0.5rem;
     }
 
     .header-text {
       transition: all 0.3s ease;
       font-size: 1rem;
+      line-height: 1.2rem;
+      max-width: 220px;
     }
 
-    /* Quando scrolli */
     .shrink {
       height: 20vh !important;
-      padding-top: 0.5rem !important;
-      padding-bottom: 0.5rem !important;
+      padding-top: 0.3rem !important;
     }
 
     .shrink .logo {
-      height: 60px;
+      max-height: 60px;
       margin-bottom: 0.25rem;
     }
 
     .shrink .header-text {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       line-height: 1rem;
-      margin-top: 0;
     }
 
     .divider {
       border-bottom: 1px solid #e5e7eb;
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
     }
   </style>
 </head>
 <body class="bg-white text-gray-900">
-  <header id="pageHeader" class="w-full flex flex-col items-center pt-4 pb-2">
+  <header id="pageHeader" class="w-full flex flex-col items-center">
     <img src="./images/logo.png" alt="Mira Logo" class="logo object-contain" />
-    <p class="header-text text-center max-w-xs">Shop our Amazon favorites – trusted, trending, and ready to ship.</p>
+    <p class="header-text text-center">
+      Shop our Amazon favorites —<br />trusted and trending, ready to ship.
+    </p>
     <div class="divider w-full max-w-md"></div>
   </header>
 
