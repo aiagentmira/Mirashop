@@ -23,22 +23,23 @@
 
     .header-text {
       transition: all 0.3s ease;
+      margin-top: 0.75rem;
     }
 
     .shrink .logo {
-      transform: scale(0.75); /* riduzione del 25% */
+      transform: scale(0.75);
+      margin-bottom: -12px; /* riduce spazio visivo tra logo e testo */
     }
 
     .shrink .header-text {
       font-size: 0.875rem;
       line-height: 1rem;
-      margin-top: 0.25rem;
+      margin-top: 0rem;
     }
 
-    /* Aggiunta per alzare la scritta su mobile dopo lo scroll */
     @media (max-width: 640px) {
       .shrink .header-text {
-        transform: translateY(-12px);
+        transform: translateY(-6px);
       }
     }
 
@@ -56,13 +57,13 @@
   </header>
 
   <main class="p-4 space-y-10">
-    <section id="firestick" class="flex flex-col items-center space-y-4">
+    <section id="firetv" class="flex flex-col items-center space-y-4">
       <img src="./images/firetv.jpg" alt="Fire TV Stick" class="h-52 object-contain" />
       <p class="text-center">Fire TV Stick 4K with Alexa Voice Remote – endless streaming at your fingertips.</p>
       <a href="https://geni.us/sMTL00g#firetv" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
     </section>
 
-    <section id="airfryer" class="flex flex-col items-center space-y-4">
+    <section id="cosori" class="flex flex-col items-center space-y-4">
       <img src="./images/cosori.jpg" alt="Cosori Airfryer" class="h-52 object-contain" />
       <p class="text-center">Cosori Airfryer – Healthier, faster, and tastier cooking made simple.</p>
       <a href="https://geni.us/ID7Cm#cosori" class="bg-black text-white px-6 py-2 rounded-full text-sm">Buy on Amazon</a>
