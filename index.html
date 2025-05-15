@@ -24,19 +24,25 @@
 
     .header-text {
       transition: all 0.3s ease;
-      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* Quando scrolli */
+    .shrink {
+      height: 20vh !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
     }
 
     .shrink .logo {
-      height: 85px; /* forza altezza ridotta */
-      margin-bottom: 0.1rem; /* quasi attaccata alla scritta */
+      height: 60px;
+      margin-bottom: 0.25rem;
     }
 
     .shrink .header-text {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       line-height: 1rem;
-      margin-top: 0rem;
-      transform: translateY(-6px);
+      margin-top: 0;
     }
 
     .divider {
@@ -48,7 +54,7 @@
 <body class="bg-white text-gray-900">
   <header id="pageHeader" class="w-full flex flex-col items-center pt-4 pb-2">
     <img src="./images/logo.png" alt="Mira Logo" class="logo object-contain" />
-    <p class="header-text text-lg text-center max-w-xs">Shop our Amazon favorites – trusted, trending, and ready to ship.</p>
+    <p class="header-text text-center max-w-xs">Shop our Amazon favorites – trusted, trending, and ready to ship.</p>
     <div class="divider w-full max-w-md"></div>
   </header>
 
