@@ -19,33 +19,29 @@
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
       transform-origin: top center;
       height: 138px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     .header-text {
       transition: all 0.3s ease;
+      margin-top: 0.5rem;
     }
 
     .shrink .logo {
-      transform: scale(0.75);
-      margin-bottom: 0.25rem; /* Riduce lo spazio sotto al logo */
+      height: 85px; /* forza altezza ridotta */
+      margin-bottom: 0.1rem; /* quasi attaccata alla scritta */
     }
 
     .shrink .header-text {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       line-height: 1rem;
-      margin-top: 0rem; /* Elimina spazio sopra la scritta */
-    }
-
-    @media (max-width: 640px) {
-      .shrink .header-text {
-        transform: translateY(-10px);
-      }
+      margin-top: 0rem;
+      transform: translateY(-6px);
     }
 
     .divider {
       border-bottom: 1px solid #e5e7eb;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
     }
   </style>
 </head>
