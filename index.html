@@ -1,20 +1,167 @@
-<!-- Fire TV Stick -->
-<div class="product">
-  <img src="images/firetv.jpg" alt="Fire TV Stick 4K">
-  <p>Transform your TV into a smart hub with the Fire TV Stick 4K. Easy setup, endless entertainment!</p>
-  <a href="https://geni.us/sMTL00g#firetv" target="_blank" class="buy-button">Buy on Amazon</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MiraShop</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
 
-<!-- Cosori Air Fryer -->
-<div class="product">
-  <img src="images/cosori.jpg" alt="Cosori Air Fryer">
-  <p>Fry your favorite foods with little to no oil! The Cosori air fryer is perfect for healthy, crispy meals.</p>
-  <a href="https://geni.us/YW7zR2#cosori" target="_blank" class="buy-button">Buy on Amazon</a>
-</div>
+    header {
+      text-align: center;
+      padding: 10px;
+      background-color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #ccc;
+    }
 
-<!-- Stanley Tumbler -->
-<div class="product">
-  <img src="images/stanley.jpg" alt="Stanley Quencher H2.0 Tumbler">
-  <p>Stay hydrated with style. The Stanley Quencher keeps drinks cold for hours and looks great anywhere.</p>
-  <a href="https://geni.us/3zRg55#stanley" target="_blank" class="buy-button">Buy on Amazon</a>
-</div>
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+    }
+
+    .logo-container .subtitle {
+      font-size: 14px;
+      margin-top: 5px;
+      color: #555;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto;
+      max-width: 90%;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px 40px 8px 30px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+    }
+
+    .search-bar img.logo-icon {
+      height: 20px;
+      position: absolute;
+      margin-left: -250px;
+    }
+
+    .products {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .product {
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .product-title {
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    .product-desc {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .buy-button {
+      background-color: #ff7f50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .footer-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 8px 0;
+      border-top: 1px solid #ccc;
+      z-index: 1000;
+    }
+
+    .footer-bar a img {
+      height: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Mira Logo" />
+      <div class="subtitle">Shop viral Amazon products in one click!</div>
+    </div>
+    <div class="search-bar">
+      <img src="images/logo.png" alt="icon" class="logo-icon" />
+      <input type="text" placeholder="Search your favorite product..." />
+    </div>
+  </header>
+
+  <section class="products">
+    <div class="product">
+      <img src="images/firetv.jpg" alt="Fire TV Stick 4K" />
+      <div class="product-title">Fire TV Stick 4K</div>
+      <div class="product-desc">Stream your favorite shows in stunning 4K quality with Alexa voice remote.</div>
+      <a href="https://geniuslink.to/firetv" class="buy-button" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product">
+      <img src="images/cosori.jpg" alt="Cosori Air Fryer" />
+      <div class="product-title">Cosori Air Fryer</div>
+      <div class="product-desc">Crispy meals with less oil. 5.8QT capacity & smart touch screen control.</div>
+      <a href="https://geniuslink.to/cosoriair" class="buy-button" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product">
+      <img src="images/stanley.jpg" alt="Stanley Quencher H2.0 Tumbler" />
+      <div class="product-title">Stanley Quencher H2.0</div>
+      <div class="product-desc">Stay hydrated in style with this viral 40oz stainless steel tumbler.</div>
+      <a href="https://geniuslink.to/stanley" class="buy-button" target="_blank">Buy on Amazon</a>
+    </div>
+  </section>
+
+  <div class="footer-bar">
+    <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
+      <img src="images/tiktok.png" alt="TikTok" />
+    </a>
+    <a href="https://www.youtube.com/@aiagentmira" target="_blank">
+      <img src="images/youtube.png" alt="YouTube" />
+    </a>
+  </div>
+</body>
+</html>
