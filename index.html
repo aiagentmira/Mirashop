@@ -13,23 +13,31 @@
 
     header {
       background: white;
-      padding: 10px;
+      padding: 10px 16px;
       position: sticky;
       top: 0;
       z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       border-bottom: 1px solid #ddd;
     }
 
-    header img.logo {
-      height: 36px;
-      margin-right: 10px;
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .topbar img {
+      height: 40px;
+    }
+
+    .trust-text {
+      font-size: 14px;
+      color: #444;
+      margin-top: 4px;
     }
 
     .search-container {
-      flex: 1;
       position: relative;
     }
 
@@ -117,7 +125,10 @@
 <body>
 
   <header>
-    <img src="images/logo.png" alt="MIRA Logo" class="logo" />
+    <div class="topbar">
+      <img src="images/logo.png" alt="MIRA Logo" />
+    </div>
+    <div class="trust-text">Shop safely with Amazon – Fast delivery and secure checkout</div>
     <div class="search-container">
       <input type="text" id="search" placeholder="Search your favorite product..." onkeyup="showSuggestions(this.value)" />
       <div class="suggestions" id="suggestions"></div>
@@ -126,7 +137,7 @@
 
   <main id="product-list">
     <div class="product" data-name="Fire Stick">
-      <img src="images/firestick.jpg" alt="Fire Stick 4K"/>
+      <img src="images/firetv.jpg" alt="Fire TV Stick 4K"/>
       <div class="product-title">Fire TV Stick 4K</div>
       <a href="https://www.amazon.it/dp/B09BZ8F3XX">Buy on Amazon</a>
     </div>
@@ -153,7 +164,7 @@
 
   <script>
     const products = [
-      { name: 'Fire Stick', image: 'images/firestick.jpg', link: '#Fire' },
+      { name: 'Fire Stick', image: 'images/firetv.jpg', link: '#Fire' },
       { name: 'Cosori Air Fryer', image: 'images/cosori.jpg', link: '#Cosori' },
       { name: 'Stanley Tumbler', image: 'images/stanley.jpg', link: '#Stanley' },
     ];
