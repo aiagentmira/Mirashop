@@ -2,261 +2,221 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MiraShop</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #ffffff;
-      padding-bottom: 60px;
+      margin: 0;
+      padding: 0;
     }
 
     header {
       text-align: center;
-      padding: 20px 10px 5px;
+      padding: 20px 10px 10px;
     }
 
     header img {
-      max-width: 100px;
+      width: 100px;
       height: auto;
-      margin: 0 auto;
-      display: block;
     }
 
-    .subtitle {
-      font-size: 14px;
-      color: #555;
-      margin-top: 5px;
-      line-height: 1.4;
+    header h2 {
+      font-size: 16px;
+      color: #444;
+      margin: 10px 0 0;
     }
 
     .search-container {
       position: sticky;
       top: 0;
       background: white;
-      padding: 10px 15px;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      z-index: 1000;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      z-index: 999;
+      transition: all 0.3s ease;
     }
 
-    .search-container input[type="text"] {
-      width: 100%;
-      padding: 10px 12px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .search-container .logo-small {
-      width: 30px;
-      height: auto;
-      margin-left: 10px;
-    }
-
-    .autocomplete-list {
-      position: absolute;
-      top: 70px;
-      left: 15px;
-      right: 15px;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      z-index: 998;
-    }
-
-    .autocomplete-item {
-      display: flex;
-      align-items: center;
+    .search-container input {
       padding: 8px;
-      cursor: pointer;
-      border-bottom: 1px solid #eee;
-    }
-
-    .autocomplete-item img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      margin-right: 10px;
+      font-size: 14px;
+      width: 80%;
+      border: 1px solid #aaa;
       border-radius: 4px;
     }
 
-    .autocomplete-item:last-child {
-      border-bottom: none;
+    .logo-small {
+      display: none;
+      width: 30px;
+      margin-left: 10px;
+    }
+
+    .search-container.scrolled .logo-small {
+      display: inline-block;
     }
 
     .products {
+      padding: 20px;
       display: flex;
       flex-direction: column;
+      gap: 20px;
       align-items: center;
-      padding: 20px;
-      gap: 30px;
     }
 
     .product {
+      max-width: 300px;
       text-align: center;
-      max-width: 250px;
     }
 
     .product img {
-      max-width: 180px;
-      max-height: 180px;
-      width: auto;
-      height: auto;
+      max-width: 100%;
+      max-height: 250px;
       object-fit: contain;
-      aspect-ratio: 1 / 1;
-      display: block;
-      margin: 0 auto 10px;
-      border-radius: 8px;
     }
 
-    .product h2 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .product a {
+    .product button {
       background-color: #ff9900;
+      border: none;
       color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      display: inline-block;
-      font-weight: bold;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    .autocomplete-items {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #ccc;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 999;
+      width: 80%;
+      margin-top: 2px;
+    }
+
+    .autocomplete-items div {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+
+    .autocomplete-items div img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      object-fit: contain;
     }
 
     .footer-bar {
       position: fixed;
       bottom: 0;
       width: 100%;
-      height: 50px;
-      background: #ffffff;
+      background-color: white;
+      border-top: 1px solid #ccc;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-top: 1px solid #ddd;
-      z-index: 999;
+      padding: 8px;
+      z-index: 1000;
+      gap: 15px;
     }
 
     .footer-bar img {
-      height: 24px;
-      width: auto;
-      margin: 0 15px;
+      width: 30px;
+      height: 30px;
     }
-
   </style>
 </head>
 <body>
-
   <header>
-    <img src="images/logo.png" alt="Mira Logo">
-    <div class="subtitle">
-      Discover the most viral Amazon finds<br>All in one place, just for you!
-    </div>
+    <img src="images/logo.png" alt="Mira Logo" />
+    <h2>Buy with confidence on Amazon</h2>
   </header>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search your favorite product..." oninput="showSuggestions()" />
-    <img src="images/logo.png" alt="Mira small logo" class="logo-small" />
+  <div class="search-container" id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Search for your favorite product..." />
+    <img src="images/logo.png" alt="Small Logo" class="logo-small" />
   </div>
 
-  <div id="autocomplete-list" class="autocomplete-list" style="display: none;"></div>
+  <div class="autocomplete-items" id="autocompleteList"></div>
 
   <div class="products">
-    <div class="product" id="cosori">
-      <img src="images/cosori.jpg" alt="Cosori Air Fryer">
-      <h2>Cosori Air Fryer</h2>
-      <a href="https://www.amazon.com/dp/B09ZXR11Q9" target="_blank">Buy on Amazon</a>
+    <div class="product" data-name="cosori">
+      <img src="images/cosori.jpg" alt="Cosori Air Fryer" />
+      <button onclick="location.href='#'">Buy on Amazon</button>
     </div>
-
-    <div class="product" id="firetv">
-      <img src="images/firetv.jpg" alt="Fire TV Stick 4K">
-      <h2>Fire TV Stick 4K</h2>
-      <a href="https://www.amazon.com/dp/B08XVYZ1Y5" target="_blank">Buy on Amazon</a>
+    <div class="product" data-name="firetv">
+      <img src="images/firetv.jpg" alt="Fire TV Stick" />
+      <button onclick="location.href='#'">Buy on Amazon</button>
     </div>
-
-    <div class="product" id="stanley">
-      <img src="images/stanley.jpg" alt="Stanley Quencher Tumbler">
-      <h2>Stanley Quencher Tumbler</h2>
-      <a href="https://www.amazon.com/dp/B0BYYDJ9P5" target="_blank">Buy on Amazon</a>
+    <div class="product" data-name="stanley">
+      <img src="images/stanley.jpg" alt="Stanley Tumbler" />
+      <button onclick="location.href='#'">Buy on Amazon</button>
     </div>
   </div>
 
   <div class="footer-bar">
     <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
-      <img src="images/tiktok.PNG" alt="TikTok">
+      <img src="images/tiktok.PNG" alt="TikTok" />
     </a>
     <a href="https://www.youtube.com/@aiagentmira" target="_blank">
-      <img src="images/youtube.png" alt="YouTube">
+      <img src="images/youtube.PNG" alt="YouTube" />
     </a>
   </div>
 
   <script>
+    const searchInput = document.getElementById("searchInput");
+    const autocompleteList = document.getElementById("autocompleteList");
+    const products = document.querySelectorAll(".product");
+
     const suggestions = [
-      {
-        id: "cosori",
-        name: "Cosori Air Fryer",
-        img: "images/cosori.jpg"
-      },
-      {
-        id: "firetv",
-        name: "Fire TV Stick 4K",
-        img: "images/firetv.jpg"
-      },
-      {
-        id: "stanley",
-        name: "Stanley Quencher Tumbler",
-        img: "images/stanley.jpg"
-      }
+      { name: "Cosori", image: "images/cosori.jpg", id: "cosori" },
+      { name: "Fire TV Stick", image: "images/firetv.jpg", id: "firetv" },
+      { name: "Stanley Tumbler", image: "images/stanley.jpg", id: "stanley" },
     ];
 
-    function showSuggestions() {
-      const input = document.getElementById("searchInput");
-      const list = document.getElementById("autocomplete-list");
-      const query = input.value.toLowerCase();
-      list.innerHTML = "";
-      if (!query) {
-        list.style.display = "none";
-        return;
-      }
+    searchInput.addEventListener("input", function () {
+      const val = this.value.toLowerCase();
+      autocompleteList.innerHTML = "";
 
-      const filtered = suggestions.filter(item =>
-        item.name.toLowerCase().includes(query)
-      );
+      if (!val) return false;
 
-      if (filtered.length === 0) {
-        list.style.display = "none";
-        return;
-      }
-
-      filtered.forEach(item => {
-        const div = document.createElement("div");
-        div.classList.add("autocomplete-item");
-        div.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" />
-          <span>${item.name}</span>
-        `;
-        div.onclick = () => {
-          document.getElementById(item.id).scrollIntoView({ behavior: "smooth" });
-          list.style.display = "none";
-          input.value = "";
-        };
-        list.appendChild(div);
+      suggestions.forEach((sugg) => {
+        if (sugg.name.toLowerCase().includes(val)) {
+          const div = document.createElement("div");
+          div.innerHTML = `<img src="${sugg.image}" alt="${sugg.name}"><span>${sugg.name}</span>`;
+          div.addEventListener("click", () => {
+            searchInput.value = sugg.name;
+            autocompleteList.innerHTML = "";
+            scrollToProduct(sugg.id);
+          });
+          autocompleteList.appendChild(div);
+        }
       });
+    });
 
-      list.style.display = "block";
+    function scrollToProduct(productId) {
+      const target = document.querySelector(`.product[data-name="${productId}"]`);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     }
 
-    document.addEventListener("click", function (e) {
-      if (!document.querySelector(".search-container").contains(e.target)) {
-        document.getElementById("autocomplete-list").style.display = "none";
+    window.addEventListener("scroll", function () {
+      const searchBar = document.getElementById("searchContainer");
+      if (window.scrollY > 50) {
+        searchBar.classList.add("scrolled");
+      } else {
+        searchBar.classList.remove("scrolled");
       }
     });
   </script>
-
 </body>
 </html>
