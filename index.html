@@ -30,19 +30,26 @@
     }
 
     .search-bar {
-      text-align: center;
-      margin: 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       position: sticky;
       top: 0;
       background: white;
-      padding: 10px 0;
+      padding: 10px;
       z-index: 999;
       border-top: 1px solid #eee;
       border-bottom: 1px solid #eee;
     }
 
+    .search-bar img {
+      height: 30px;
+    }
+
     .search-bar input {
-      width: 80%;
+      flex: 1;
+      max-width: 80%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 50px;
@@ -50,7 +57,7 @@
     }
 
     .suggestions {
-      max-width: 80%;
+      max-width: 90%;
       margin: 0 auto;
       position: absolute;
       background: white;
@@ -111,15 +118,13 @@
     footer {
       position: fixed;
       bottom: 0;
-      right: 0;
+      width: 100%;
       background-color: white;
-      padding: 5px 10px;
-      z-index: 1000;
-    }
-
-    footer a {
-      margin: 0 5px;
-      text-decoration: none;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      border-top: 1px solid #eee;
     }
 
     footer img {
@@ -135,9 +140,11 @@
   </header>
 
   <div class="search-bar">
+    <img src="images/logo.png" alt="Logo small">
     <input type="text" id="searchInput" placeholder="Search your favorite product...">
-    <div class="suggestions" id="suggestionsBox"></div>
   </div>
+
+  <div class="suggestions" id="suggestionsBox"></div>
 
   <div class="product" id="firetv">
     <img src="images/firetv.png" alt="Fire TV Stick">
@@ -159,10 +166,10 @@
 
   <footer>
     <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo.svg" alt="TikTok">
+      <img src="images/tiktok-icon.png" alt="TikTok">
     </a>
     <a href="https://www.youtube.com/@aiagentmira" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_square_%282017%29.svg" alt="YouTube">
+      <img src="images/youtube-icon.png" alt="YouTube">
     </a>
   </footer>
 
