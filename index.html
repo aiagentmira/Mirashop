@@ -2,24 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MiraShop</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
+      background-color: #ffffff;
       color: #000;
+      padding-bottom: 60px; /* spazio per la barra social fissa */
     }
     header {
       text-align: center;
-      padding: 10px 0 0;
+      padding: 15px 0 5px;
     }
     header img {
       max-width: 100px;
       height: auto;
-      margin: 0 auto;
-      display: block;
     }
     header h1 {
       font-size: 20px;
@@ -42,7 +41,7 @@
       display: flex;
       flex-direction: column;
       gap: 30px;
-      padding: 20px 10px 60px;
+      padding: 20px 10px;
       max-width: 600px;
       margin: auto;
     }
@@ -60,34 +59,41 @@
     }
     .buy-btn {
       display: inline-block;
-      background-color: #ff4c4c;
+      background-color: #ff0050;
       color: white;
       padding: 10px 20px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
+      transition: background 0.3s;
     }
-    footer {
+    .buy-btn:hover {
+      background-color: #e60045;
+    }
+    .bottom-bar {
       position: fixed;
-      bottom: 10px;
+      bottom: 0;
       left: 0;
       right: 0;
-      text-align: center;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      z-index: 1000;
     }
-    .social-icons a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-    .social-icons img {
-      width: 30px;
-      height: 30px;
+    .bottom-bar a img {
+      width: 28px;
+      height: 28px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="https://mirashop.vercel.app/assets/logo.png" alt="Mira Logo">
+    <img src="images/logo.png" alt="Mira Logo">
     <h1>Top Picks Just for You</h1>
   </header>
 
@@ -96,44 +102,44 @@
   </div>
 
   <div class="products">
-    <!-- COSORI AIR FRYER -->
+
+    <!-- COSORI -->
     <div class="product" id="cosori">
-      <img src="https://m.media-amazon.com/images/I/61l0XH-2f9L.AC_SL1500.jpg" alt="Cosori Air Fryer">
+      <img src="images/cosori.jpg" alt="Cosori Air Fryer">
       <div class="product-description">
         Cook crispy meals with 85% less fat using this best-selling air fryer.
       </div>
-      <a class="buy-btn" href="https://geni.us/dOLExB#cosori" target="_blank">Discover on Amazon</a>
+      <a class="buy-btn" href="https://geni.us/dOLExB#cosori" target="_blank">Buy on Amazon</a>
     </div>
 
     <!-- FIRE STICK -->
     <div class="product" id="firetv">
-      <img src="https://m.media-amazon.com/images/I/51Da2Z+FTKL._AC_SL1000_.jpg" alt="Fire TV Stick">
+      <img src="images/firetv.jpg" alt="Fire TV Stick">
       <div class="product-description">
-        Transform any TV into a smart one — stream Netflix, YouTube, Prime Video and more.
+        Turn any TV into a smart one. Stream Netflix, Prime Video, YouTube & more.
       </div>
-      <a class="buy-btn" href="https://geni.us/sMTL00g#firetv" target="_blank">Discover on Amazon</a>
+      <a class="buy-btn" href="https://geni.us/sMTL00g#firetv" target="_blank">Buy on Amazon</a>
     </div>
 
     <!-- STANLEY TUMBLER -->
     <div class="product" id="stanley">
-      <img src="https://m.media-amazon.com/images/I/61Mdrn+Lh+L._AC_SL1500_.jpg" alt="Stanley Quencher">
+      <img src="images/stanley.jpg" alt="Stanley Quencher Tumbler">
       <div class="product-description">
-        Stay hydrated in style with this viral 40 oz Stanley Quencher tumbler.
+        Stay stylishly hydrated with the viral Stanley 40oz tumbler.
       </div>
-      <a class="buy-btn" href="https://geni.us/3zRg55#stanley" target="_blank">Discover on Amazon</a>
+      <a class="buy-btn" href="https://geni.us/3zRg55#stanley" target="_blank">Buy on Amazon</a>
     </div>
+
   </div>
 
-  <footer>
-    <div class="social-icons">
-      <a href="https://www.tiktok.com/@mirabrand" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
-      </a>
-      <a href="https://www.youtube.com/@mirabrand" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-      </a>
-    </div>
-  </footer>
+  <div class="bottom-bar">
+    <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
+    </a>
+    <a href="https://www.youtube.com/@aiagentmira" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+    </a>
+  </div>
 
 </body>
 </html>
