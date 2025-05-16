@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MiraShop</title>
   <style>
     body {
@@ -39,23 +39,25 @@
       border-top: 1px solid #ddd;
       border-bottom: 1px solid #ddd;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 10px;
       z-index: 999;
     }
 
     .search-container input[type="text"] {
-      width: 100%;
+      flex-grow: 1;
       padding: 10px 12px;
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
 
-    .search-container .logo-small {
+    /* Icona piccola Mira dentro la barra, a destra, sempre visibile */
+    .logo-small {
       width: 30px;
       height: auto;
-      margin-left: 10px;
+      cursor: pointer;
+      flex-shrink: 0;
     }
 
     .autocomplete-list {
@@ -67,6 +69,8 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       z-index: 998;
+      max-height: 250px;
+      overflow-y: auto;
     }
 
     .autocomplete-item {
@@ -142,25 +146,33 @@
       z-index: 999;
     }
 
-    .footer-bar img {
-      height: 24px;
-      width: auto;
+    .footer-bar a {
       margin: 0 15px;
     }
 
+    .footer-bar img {
+      height: 24px;
+      width: auto;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="images/logo.png" alt="Mira Logo">
+    <img src="images/logo.png" alt="Mira Logo" />
     <div class="subtitle">
-      Discover the most viral Amazon finds<br>All in one place, just for you!
+      Discover the most viral Amazon finds<br />All in one place, just for you!
     </div>
   </header>
 
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search your favorite product..." oninput="showSuggestions()" />
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search your favorite product..."
+      oninput="showSuggestions()"
+      autocomplete="off"
+    />
     <img src="images/logo.png" alt="Mira small logo" class="logo-small" />
   </div>
 
@@ -168,31 +180,31 @@
 
   <div class="products">
     <div class="product" id="cosori">
-      <img src="images/cosori.jpg" alt="Cosori Air Fryer">
+      <img src="images/cosori.jpg" alt="Cosori Air Fryer" />
       <h2>Cosori Air Fryer</h2>
       <a href="https://www.amazon.com/dp/B09ZXR11Q9" target="_blank">Buy on Amazon</a>
     </div>
 
     <div class="product" id="firetv">
-      <img src="images/firetv.jpg" alt="Fire TV Stick 4K">
+      <img src="images/firetv.jpg" alt="Fire TV Stick 4K" />
       <h2>Fire TV Stick 4K</h2>
       <a href="https://www.amazon.com/dp/B08XVYZ1Y5" target="_blank">Buy on Amazon</a>
     </div>
 
     <div class="product" id="stanley">
-      <img src="images/stanley.jpg" alt="Stanley Quencher Tumbler">
+      <img src="images/stanley.jpg" alt="Stanley Quencher Tumbler" />
       <h2>Stanley Quencher Tumbler</h2>
       <a href="https://www.amazon.com/dp/B0BYYDJ9P5" target="_blank">Buy on Amazon</a>
     </div>
   </div>
 
   <div class="footer-bar">
-    <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
-      <img src="images/tiktok.PNG" alt="TikTok">
-    </a>
-    <a href="https://www.youtube.com/@aiagentmira" target="_blank">
-      <img src="images/youtube.PNG" alt="YouTube">
-    </a>
+    <a href="https://www.tiktok.com/@aiagentmira" target="_blank"
+      ><img src="images/tiktok.PNG" alt="TikTok"
+    /></a>
+    <a href="https://www.youtube.com/@aiagentmira" target="_blank"
+      ><img src="images/youtube.PNG" alt="YouTube"
+    /></a>
   </div>
 
   <script>
@@ -200,18 +212,18 @@
       {
         id: "cosori",
         name: "Cosori Air Fryer",
-        img: "images/cosori.jpg"
+        img: "images/cosori.jpg",
       },
       {
         id: "firetv",
         name: "Fire TV Stick 4K",
-        img: "images/firetv.jpg"
+        img: "images/firetv.jpg",
       },
       {
         id: "stanley",
         name: "Stanley Quencher Tumbler",
-        img: "images/stanley.jpg"
-      }
+        img: "images/stanley.jpg",
+      },
     ];
 
     function showSuggestions() {
@@ -224,7 +236,7 @@
         return;
       }
 
-      const filtered = suggestions.filter(item =>
+      const filtered = suggestions.filter((item) =>
         item.name.toLowerCase().includes(query)
       );
 
@@ -233,7 +245,7 @@
         return;
       }
 
-      filtered.forEach(item => {
+      filtered.forEach((item) => {
         const div = document.createElement("div");
         div.classList.add("autocomplete-item");
         div.innerHTML = `
@@ -257,6 +269,5 @@
       }
     });
   </script>
-
 </body>
 </html>
