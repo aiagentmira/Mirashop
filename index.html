@@ -4,164 +4,149 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MiraShop</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
       color: #333;
     }
 
     header {
-      text-align: center;
-      padding: 10px;
-      background-color: #ffffff;
       position: sticky;
       top: 0;
+      background: white;
+      padding: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       z-index: 1000;
-      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .logo-container {
+    .logo-area {
       display: flex;
-      flex-direction: column;
       align-items: center;
     }
 
-    .logo-container img {
-      height: 50px;
+    .logo-area img {
+      height: 40px;
+      margin-right: 10px;
     }
 
-    .logo-container .subtitle {
+    .brand-text {
       font-size: 14px;
-      margin-top: 5px;
-      color: #555;
+      font-weight: 600;
+      color: #444;
     }
 
     .search-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 10px auto;
-      max-width: 90%;
+      flex: 1;
+      margin-left: 20px;
+      position: relative;
     }
 
     .search-bar input {
       width: 100%;
-      padding: 8px 40px 8px 30px;
+      padding: 10px 15px 10px 40px;
       font-size: 14px;
       border: 1px solid #ccc;
-      border-radius: 20px;
+      border-radius: 8px;
     }
 
-    .search-bar img.logo-icon {
-      height: 20px;
+    .search-bar::before {
+      content: url('images/logo.png');
       position: absolute;
-      margin-left: -250px;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 20px;
+    }
+
+    #suggestions {
+      position: absolute;
+      top: 42px;
+      width: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      z-index: 999;
+    }
+
+    #suggestions div {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    #suggestions div:hover {
+      background: #f0f0f0;
+    }
+
+    #suggestions img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      margin-right: 10px;
     }
 
     .products {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 30px;
       padding: 20px;
     }
 
     .product {
+      width: 90%;
+      max-width: 400px;
+      margin: 15px auto;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
       text-align: center;
-      max-width: 300px;
     }
 
     .product img {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .product-title {
-      font-weight: bold;
-      margin: 10px 0 5px;
-    }
-
-    .product-desc {
-      font-size: 14px;
+      max-height: 250px;
+      object-fit: contain;
       margin-bottom: 10px;
     }
 
-    .buy-button {
-      background-color: #ff7f50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 14px;
-      text-decoration: none;
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
     }
 
-    .footer-bar {
+    .product p {
+      font-size: 14px;
+      margin: 5px 0 15px;
+    }
+
+    .product a {
+      display: inline-block;
+      background-color: #FF9900;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .social-footer {
       position: fixed;
       bottom: 0;
       width: 100%;
-      background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 8px 0;
+      background: #fff;
+      text-align: center;
       border-top: 1px solid #ccc;
-      z-index: 1000;
+      padding: 10px 0;
     }
 
-    .footer-bar a img {
-      height: 24px;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <div class="logo-container">
-      <img src="images/logo.png" alt="Mira Logo" />
-      <div class="subtitle">Shop viral Amazon products in one click!</div>
-    </div>
-    <div class="search-bar">
-      <img src="images/logo.png" alt="icon" class="logo-icon" />
-      <input type="text" placeholder="Search your favorite product..." />
-    </div>
-  </header>
-
-  <section class="products">
-    <div class="product">
-      <img src="images/firetv.jpg" alt="Fire TV Stick 4K" />
-      <div class="product-title">Fire TV Stick 4K</div>
-      <div class="product-desc">Stream your favorite shows in stunning 4K quality with Alexa voice remote.</div>
-      <a href="https://geniuslink.to/firetv" class="buy-button" target="_blank">Buy on Amazon</a>
-    </div>
-
-    <div class="product">
-      <img src="images/cosori.jpg" alt="Cosori Air Fryer" />
-      <div class="product-title">Cosori Air Fryer</div>
-      <div class="product-desc">Crispy meals with less oil. 5.8QT capacity & smart touch screen control.</div>
-      <a href="https://geniuslink.to/cosoriair" class="buy-button" target="_blank">Buy on Amazon</a>
-    </div>
-
-    <div class="product">
-      <img src="images/stanley.jpg" alt="Stanley Quencher H2.0 Tumbler" />
-      <div class="product-title">Stanley Quencher H2.0</div>
-      <div class="product-desc">Stay hydrated in style with this viral 40oz stainless steel tumbler.</div>
-      <a href="https://geniuslink.to/stanley" class="buy-button" target="_blank">Buy on Amazon</a>
-    </div>
-  </section>
-
-  <div class="footer-bar">
-    <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
-      <img src="images/tiktok.png" alt="TikTok" />
-    </a>
-    <a href="https://www.youtube.com/@aiagentmira" target="_blank">
-      <img src="images/youtube.png" alt="YouTube" />
-    </a>
-  </div>
-</body>
-</html>
+    .social-footer img {
+      width: 30px;
+      margin: 0 15px;
+      vertical
