@@ -58,6 +58,37 @@
       margin-left: 10px;
     }
 
+    .autocomplete-list {
+      position: absolute;
+      top: 70px;
+      left: 15px;
+      right: 15px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      z-index: 998;
+    }
+
+    .autocomplete-item {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+
+    .autocomplete-item img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      margin-right: 10px;
+      border-radius: 4px;
+    }
+
+    .autocomplete-item:last-child {
+      border-bottom: none;
+    }
+
     .products {
       display: flex;
       flex-direction: column;
@@ -116,6 +147,7 @@
       width: auto;
       margin: 0 15px;
     }
+
   </style>
 </head>
 <body>
@@ -128,24 +160,26 @@
   </header>
 
   <div class="search-container">
-    <input type="text" placeholder="Search your favorite product..." />
+    <input type="text" id="searchInput" placeholder="Search your favorite product..." oninput="showSuggestions()" />
     <img src="images/logo.png" alt="Mira small logo" class="logo-small" />
   </div>
 
+  <div id="autocomplete-list" class="autocomplete-list" style="display: none;"></div>
+
   <div class="products">
-    <div class="product">
+    <div class="product" id="cosori">
       <img src="images/cosori.jpg" alt="Cosori Air Fryer">
       <h2>Cosori Air Fryer</h2>
       <a href="https://www.amazon.com/dp/B09ZXR11Q9" target="_blank">Buy on Amazon</a>
     </div>
 
-    <div class="product">
+    <div class="product" id="firetv">
       <img src="images/firetv.jpg" alt="Fire TV Stick 4K">
       <h2>Fire TV Stick 4K</h2>
       <a href="https://www.amazon.com/dp/B08XVYZ1Y5" target="_blank">Buy on Amazon</a>
     </div>
 
-    <div class="product">
+    <div class="product" id="stanley">
       <img src="images/stanley.jpg" alt="Stanley Quencher Tumbler">
       <h2>Stanley Quencher Tumbler</h2>
       <a href="https://www.amazon.com/dp/B0BYYDJ9P5" target="_blank">Buy on Amazon</a>
@@ -160,6 +194,69 @@
       <img src="images/youtube.png" alt="YouTube">
     </a>
   </div>
+
+  <script>
+    const suggestions = [
+      {
+        id: "cosori",
+        name: "Cosori Air Fryer",
+        img: "images/cosori.jpg"
+      },
+      {
+        id: "firetv",
+        name: "Fire TV Stick 4K",
+        img: "images/firetv.jpg"
+      },
+      {
+        id: "stanley",
+        name: "Stanley Quencher Tumbler",
+        img: "images/stanley.jpg"
+      }
+    ];
+
+    function showSuggestions() {
+      const input = document.getElementById("searchInput");
+      const list = document.getElementById("autocomplete-list");
+      const query = input.value.toLowerCase();
+      list.innerHTML = "";
+      if (!query) {
+        list.style.display = "none";
+        return;
+      }
+
+      const filtered = suggestions.filter(item =>
+        item.name.toLowerCase().includes(query)
+      );
+
+      if (filtered.length === 0) {
+        list.style.display = "none";
+        return;
+      }
+
+      filtered.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("autocomplete-item");
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}" />
+          <span>${item.name}</span>
+        `;
+        div.onclick = () => {
+          document.getElementById(item.id).scrollIntoView({ behavior: "smooth" });
+          list.style.display = "none";
+          input.value = "";
+        };
+        list.appendChild(div);
+      });
+
+      list.style.display = "block";
+    }
+
+    document.addEventListener("click", function (e) {
+      if (!document.querySelector(".search-container").contains(e.target)) {
+        document.getElementById("autocomplete-list").style.display = "none";
+      }
+    });
+  </script>
 
 </body>
 </html>
