@@ -5,139 +5,211 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mira Shop</title>
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #ffffff; color: #333; }
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
     header {
+      text-align: center;
+      padding: 20px 10px 10px;
+    }
+
+    header img {
+      max-height: 50px;
+      display: block;
+      margin: 0 auto 5px;
+    }
+
+    header h1 {
+      font-size: 16px;
+      margin: 0;
+      color: #444;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 10px auto;
       position: sticky;
       top: 0;
-      background: #fff;
-      padding: 10px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: white;
+      padding: 10px 0;
+      z-index: 999;
+      border-top: 1px solid #eee;
       border-bottom: 1px solid #eee;
     }
-    header img { height: 40px; margin-right: 10px; }
-    .search-bar {
-      flex: 1;
-      position: relative;
-    }
+
     .search-bar input {
-      width: 100%;
-      padding: 8px 10px;
+      width: 80%;
+      padding: 10px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 50px;
+      font-size: 16px;
     }
+
     .suggestions {
+      max-width: 80%;
+      margin: 0 auto;
       position: absolute;
-      background: #fff;
-      width: 100%;
+      background: white;
       border: 1px solid #ddd;
-      display: none;
-      max-height: 200px;
-      overflow-y: auto;
-      z-index: 1001;
+      border-radius: 8px;
+      text-align: left;
+      z-index: 1000;
     }
+
     .suggestions div {
       padding: 8px;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
     }
-    .suggestions div img {
-      height: 30px;
+
+    .suggestions div:last-child {
+      border-bottom: none;
+    }
+
+    .suggestions img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 6px;
       margin-right: 10px;
     }
+
     .product {
-      padding: 20px;
       text-align: center;
+      padding: 20px 10px;
+      border-bottom: 1px solid #eee;
     }
-    .product img { width: 80%; max-width: 300px; }
-    .buy-btn {
+
+    .product img {
+      max-width: 90%;
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    .product h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .product a {
       display: inline-block;
-      margin-top: 10px;
       padding: 10px 20px;
-      background: #d62362;
-      color: #fff;
-      border-radius: 5px;
+      background-color: #ff4f4f;
+      color: white;
+      border-radius: 25px;
       text-decoration: none;
       font-weight: bold;
     }
+
     footer {
       position: fixed;
       bottom: 0;
-      width: 100%;
-      background: #f9f9f9;
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      border-top: 1px solid #ddd;
+      right: 0;
+      background-color: white;
+      padding: 5px 10px;
+      z-index: 1000;
     }
-    footer a img {
-      height: 24px;
-      width: 24px;
+
+    footer a {
+      margin: 0 5px;
+      text-decoration: none;
+    }
+
+    footer img {
+      height: 30px;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
-
   <header>
     <img src="images/logo.png" alt="Mira Logo">
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search your favorite product...">
-      <div class="suggestions" id="suggestionsBox"></div>
-    </div>
+    <h1>Shop the best trending products on Amazon</h1>
   </header>
 
-  <div class="product" data-name="fire">
-    <img src="images/firestick.jpg" alt="Fire TV Stick">
-    <p>Fire TV Stick 4K: Stream your favorite shows in stunning 4K.</p>
-    <a class="buy-btn" href="https://geni.us/sMTL00g#firetv" target="_blank">Buy on Amazon</a>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search your favorite product...">
+    <div class="suggestions" id="suggestionsBox"></div>
   </div>
 
-  <div class="product" data-name="cosori">
-    <img src="images/cosori.jpg" alt="Cosori Air Fryer">
-    <p>Cosori Air Fryer: Cook healthier meals with less oil and better taste.</p>
-    <a class="buy-btn" href="https://geni.us/XYZ123#cosori" target="_blank">Buy on Amazon</a>
+  <div class="product" id="firetv">
+    <img src="images/firetv.png" alt="Fire TV Stick">
+    <h2>Fire TV Stick 4K</h2>
+    <a href="https://geni.us/sMTL00g">Buy on Amazon</a>
   </div>
 
-  <div class="product" data-name="stanley">
-    <img src="images/stanley.jpg" alt="Stanley Tumbler">
-    <p>Stanley Quencher: Keep your drinks cold all day with this viral tumbler.</p>
-    <a class="buy-btn" href="https://geni.us/3zRg55#stanley" target="_blank">Buy on Amazon</a>
+  <div class="product" id="cosori">
+    <img src="images/cosori.png" alt="Cosori Air Fryer">
+    <h2>Cosori Air Fryer</h2>
+    <a href="https://geni.us/cosoriair">Buy on Amazon</a>
+  </div>
+
+  <div class="product" id="stanley">
+    <img src="images/stanley.png" alt="Stanley Quencher">
+    <h2>Stanley Quencher 2.0</h2>
+    <a href="https://geni.us/3zRg55">Buy on Amazon</a>
   </div>
 
   <footer>
-    <a href="https://www.tiktok.com/@aiagentmira" target="_blank"><img src="icons/tiktok.svg" alt="TikTok"></a>
-    <a href="https://www.youtube.com/@aiagentmira" target="_blank"><img src="icons/youtube.svg" alt="YouTube"></a>
+    <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo.svg" alt="TikTok">
+    </a>
+    <a href="https://www.youtube.com/@aiagentmira" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_square_%282017%29.svg" alt="YouTube">
+    </a>
   </footer>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    const suggestionsBox = document.getElementById('suggestionsBox');
-
     const products = [
-      { name: "Fire TV Stick", keyword: "fire", image: "images/firestick.jpg", link: "https://geni.us/sMTL00g#firetv" },
-      { name: "Cosori Air Fryer", keyword: "cosori", image: "images/cosori.jpg", link: "https://geni.us/XYZ123#cosori" },
-      { name: "Stanley Tumbler", keyword: "stanley", image: "images/stanley.jpg", link: "https://geni.us/3zRg55#stanley" }
+      {
+        id: 'firetv',
+        name: 'Fire TV Stick 4K',
+        image: 'images/firetv.png'
+      },
+      {
+        id: 'cosori',
+        name: 'Cosori Air Fryer',
+        image: 'images/cosori.png'
+      },
+      {
+        id: 'stanley',
+        name: 'Stanley Quencher 2.0',
+        image: 'images/stanley.png'
+      }
     ];
 
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
+    const input = document.getElementById('searchInput');
+    const suggestionsBox = document.getElementById('suggestionsBox');
+
+    input.addEventListener('input', () => {
+      const query = input.value.toLowerCase();
       suggestionsBox.innerHTML = '';
-      if (query.length === 0) {
-        suggestionsBox.style.display = "none";
-        return;
-      }
-      const matches = products.filter(p => p.keyword.includes(query));
-      matches.forEach(product => {
-        const div = document.createElement("div");
-        div.innerHTML = `<img src="${product.image}" alt=""> ${product.name}`;
-        div.onclick = () => window.location.href = product.link;
+
+      if (query.length === 0) return;
+
+      const results = products.filter(p => p.name.toLowerCase().includes(query));
+      results.forEach(product => {
+        const div = document.createElement('div');
+        div.innerHTML = `<img src="${product.image}"><span>${product.name}</span>`;
+        div.onclick = () => {
+          document.getElementById(product.id).scrollIntoView({ behavior: 'smooth' });
+          suggestionsBox.innerHTML = '';
+        };
         suggestionsBox.appendChild(div);
       });
-      suggestionsBox.style.display = matches.length ? "block" : "none";
+    });
+
+    document.addEventListener('click', e => {
+      if (!suggestionsBox.contains(e.target) && e.target !== input) {
+        suggestionsBox.innerHTML = '';
+      }
     });
   </script>
 </body>
