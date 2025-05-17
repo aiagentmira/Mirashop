@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MiraShop</title>
   <style>
     body {
@@ -29,6 +29,7 @@
       color: #555;
       margin-top: 5px;
       line-height: 1.4;
+      text-align: center;
     }
 
     .search-container {
@@ -45,18 +46,16 @@
     }
 
     .search-container input[type="text"] {
-      flex-grow: 1;
+      flex: 1;
       padding: 10px 12px;
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
 
-    /* Icona piccola Mira dentro la barra, a destra, sempre visibile */
-    .logo-small {
+    .search-container .logo-small {
       width: 30px;
       height: auto;
-      cursor: pointer;
       flex-shrink: 0;
     }
 
@@ -144,15 +143,13 @@
       align-items: center;
       border-top: 1px solid #ddd;
       z-index: 999;
-    }
-
-    .footer-bar a {
-      margin: 0 15px;
+      gap: 15px;
     }
 
     .footer-bar img {
       height: 24px;
       width: auto;
+      display: block;
     }
   </style>
 </head>
@@ -161,16 +158,16 @@
   <header>
     <img src="images/logo.png" alt="Mira Logo" />
     <div class="subtitle">
-      Discover the most viral Amazon finds<br />All in one place, just for you!
+      Discover the most viral Amazon finds<br>All in one place, just for you!
     </div>
   </header>
 
   <div class="search-container">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search your favorite product..."
-      oninput="showSuggestions()"
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search your favorite product..." 
+      oninput="showSuggestions()" 
       autocomplete="off"
     />
     <img src="images/logo.png" alt="Mira small logo" class="logo-small" />
@@ -179,19 +176,19 @@
   <div id="autocomplete-list" class="autocomplete-list" style="display: none;"></div>
 
   <div class="products">
-    <div class="product" id="cosori">
+    <div class="product" id="cosori" data-name="Cosori">
       <img src="images/cosori.jpg" alt="Cosori Air Fryer" />
       <h2>Cosori Air Fryer</h2>
       <a href="https://www.amazon.com/dp/B09ZXR11Q9" target="_blank">Buy on Amazon</a>
     </div>
 
-    <div class="product" id="firetv">
+    <div class="product" id="firetv" data-name="Fire TV Stick">
       <img src="images/firetv.jpg" alt="Fire TV Stick 4K" />
       <h2>Fire TV Stick 4K</h2>
       <a href="https://www.amazon.com/dp/B08XVYZ1Y5" target="_blank">Buy on Amazon</a>
     </div>
 
-    <div class="product" id="stanley">
+    <div class="product" id="stanley" data-name="Stanley">
       <img src="images/stanley.jpg" alt="Stanley Quencher Tumbler" />
       <h2>Stanley Quencher Tumbler</h2>
       <a href="https://www.amazon.com/dp/B0BYYDJ9P5" target="_blank">Buy on Amazon</a>
@@ -199,31 +196,19 @@
   </div>
 
   <div class="footer-bar">
-    <a href="https://www.tiktok.com/@aiagentmira" target="_blank"
-      ><img src="images/tiktok.PNG" alt="TikTok"
-    /></a>
-    <a href="https://www.youtube.com/@aiagentmira" target="_blank"
-      ><img src="images/youtube.PNG" alt="YouTube"
-    /></a>
+    <a href="https://www.tiktok.com/@aiagentmira" target="_blank">
+      <img src="images/tiktok.PNG" alt="TikTok" />
+    </a>
+    <a href="https://www.youtube.com/@aiagentmira" target="_blank">
+      <img src="images/youtube.PNG" alt="YouTube" />
+    </a>
   </div>
 
   <script>
     const suggestions = [
-      {
-        id: "cosori",
-        name: "Cosori Air Fryer",
-        img: "images/cosori.jpg",
-      },
-      {
-        id: "firetv",
-        name: "Fire TV Stick 4K",
-        img: "images/firetv.jpg",
-      },
-      {
-        id: "stanley",
-        name: "Stanley Quencher Tumbler",
-        img: "images/stanley.jpg",
-      },
+      { id: "cosori", name: "Cosori", img: "images/cosori.jpg" },
+      { id: "firetv", name: "Fire TV Stick", img: "images/firetv.jpg" },
+      { id: "stanley", name: "Stanley", img: "images/stanley.jpg" },
     ];
 
     function showSuggestions() {
@@ -236,7 +221,7 @@
         return;
       }
 
-      const filtered = suggestions.filter((item) =>
+      const filtered = suggestions.filter(item =>
         item.name.toLowerCase().includes(query)
       );
 
@@ -245,9 +230,9 @@
         return;
       }
 
-      filtered.forEach((item) => {
+      filtered.forEach(item => {
         const div = document.createElement("div");
-        div.classList.add("autocomplete-item");
+        div.className = "autocomplete-item";
         div.innerHTML = `
           <img src="${item.img}" alt="${item.name}" />
           <span>${item.name}</span>
@@ -264,10 +249,12 @@
     }
 
     document.addEventListener("click", function (e) {
-      if (!document.querySelector(".search-container").contains(e.target)) {
+      const container = document.querySelector(".search-container");
+      if (!container.contains(e.target)) {
         document.getElementById("autocomplete-list").style.display = "none";
       }
     });
   </script>
+
 </body>
 </html>
